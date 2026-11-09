@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f5f5" />
+    <meta name="description" content="GoMarket" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/image/logo32x32.png">
+    <link rel="shortcut icon" href="/image/logo32x32.png" type="image/png">
+    <title>GoMarket</title>
+    <style>
+      html { min-height: 100%; background: #f5f5f5; color-scheme: light; }
+      html[data-theme="dark"] { background: #171717; color-scheme: dark; }
+      @media (prefers-color-scheme: dark) {
+        html:not([data-theme]) { background: #171717; color-scheme: dark; }
+      }
+      body { min-height: 100vh; margin: 0; }
+      html:not(.app-ready) #app { visibility: hidden; }
+      #splash-screen {
+        --splash-bg: #f5f5f5; --splash-ink: #202020; --splash-muted: #858585;
+        --splash-track: #e8e8e8;
+        position: fixed; z-index: 9999; inset: 0; display: grid; place-items: center;
+        overflow: hidden; background: var(--splash-bg); color: var(--splash-ink);
+        opacity: 1; visibility: visible; transition: opacity .42s ease, visibility .42s ease;
+      }
+      html[data-theme="dark"] #splash-screen { --splash-bg: #171717; --splash-ink: #eee; --splash-muted: #999; --splash-line: #444; --splash-track: #333; }
+      @media (prefers-color-scheme: dark) {
+        html:not([data-theme]) #splash-screen { --splash-bg: #171717; --splash-ink: #eee; --splash-muted: #999; --splash-line: #444; --splash-track: #333; }
+      }
+      #splash-screen.splash-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+      .splash-content { display: flex; flex-direction: column; align-items: center; }
+      .splash-emblem { display: grid; width: 50px; height: 50px; place-items: center; }
+      .splash-logo { display: block; width: 42px; height: 42px; object-fit: contain; }
+      .splash-wordmark { margin-top: 12px; font: 720 21px/1.2 "Segoe UI", Arial, sans-serif; letter-spacing: -1.2px; }
+      .splash-wordmark span { color: var(--splash-muted); font-weight: 430; }
+      .splash-content p { margin: 9px 0 17px; color: var(--splash-muted); font: 11px/1.5 "Segoe UI", Arial, sans-serif; }
+      .loading-indicator {
+        position: relative; display: block; width: 52px; height: 2px; overflow: hidden;
+        background: var(--line, var(--splash-track, #dedede)); color: var(--ink, var(--splash-ink, #202020));
+      }
+      .loading-indicator::after {
+        position: absolute; inset: 0 auto 0 0; width: 38%; background: currentColor;
+        content: ""; animation: loading-sweep 1.15s cubic-bezier(.2, .75, .25, 1) infinite;
+      }
+      .splash-loading-indicator { width: 112px; background: var(--splash-track); color: var(--splash-ink); }
+      @keyframes loading-sweep { to { transform: translateX(265%); } }
+      @media (prefers-reduced-motion: reduce) {
+        .loading-indicator::after { animation-duration: 2s; animation-iteration-count: 1; }
+      }
+    </style>
+    <script>
+      window.__gomarketBootAt = Date.now();
+      try {
+        const theme = localStorage.getItem("gomarket-theme");
+        if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+      } catch {}
+    </script>
+    <noscript><style>html:not(.app-ready) #app { visibility: visible; } #splash-screen { display: none; }</style></noscript>
+  </head>
+  <body>
+    <div class="splash-screen" id="splash-screen" role="status" aria-live="polite" aria-label="Загрузка GoMarket">
+      <div class="splash-content">
+        <div class="splash-emblem" aria-hidden="true"><img class="splash-logo" src="/image/logo32x32.png" alt="" /></div>
+        <div class="splash-wordmark">Go<span>Market</span></div>
+        <p id="splash-caption">Подбираем товары рядом с вами</p>
+        <span class="loading-indicator splash-loading-indicator" aria-hidden="true"></span>
+      </div>
+    </div>
+    <div id="app">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="GoMarket — на главную">
+          <span class="brand-mark" aria-hidden="true"><img src="/image/logo32x32.png" alt="" /></span>
+          <span>Go<span class="brand-light">Market</span></span>
+        </a>
+        <form class="top-search" id="search-form" role="search">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="search-input" type="search" placeholder="Что ищете?" aria-label="Поиск товаров" />
+        </form>
+        <div class="top-actions menu-panel" id="menu-panel">
+          <button class="button button-quiet" id="ads-nav" type="button">Для бизнеса <span class="nav-arrow">↗</span></button>
+          <button class="button button-quiet my-posts-nav" id="my-listings-button" type="button">Мои объявления</button>
+          <div class="menu-choice" role="group" aria-labelledby="theme-label">
+            <span class="menu-choice-label" id="theme-label">Тема</span>
+            <div class="choice-segment theme-segment">
+              <button type="button" class="choice-button" data-theme-choice="system" aria-label="Системная тема" title="Системная тема"><span aria-hidden="true">◐</span><span class="choice-text">Система</span></button>
+              <button type="button" class="choice-button" data-theme-choice="light" aria-label="Светлая тема" title="Светлая тема"><span aria-hidden="true">☼</span><span class="choice-text">Светлая</span></button>
+              <button type="button" class="choice-button" data-theme-choice="dark" aria-label="Тёмная тема" title="Тёмная тема"><span aria-hidden="true">◑</span><span class="choice-text">Тёмная</span></button>
+            </div>
+          </div>
+          <div class="menu-choice" role="group" aria-labelledby="language-label">
+            <span class="menu-choice-label" id="language-label">Язык</span>
+            <div class="choice-segment language-segment">
+              <button type="button" class="choice-button" data-language-choice="ru" aria-label="Русский">RU</button>
+              <button type="button" class="choice-button" data-language-choice="ky" aria-label="Кыргызча">KG</button>
+              <button type="button" class="choice-button" data-language-choice="en" aria-label="English">EN</button>
+            </div>
+          </div>
+          <div class="menu-choice sound-menu-choice">
+            <span class="menu-choice-label" id="menu-sound-label">Звуки интерфейса</span>
+            <button class="sound-toggle" type="button" data-sound-toggle aria-labelledby="menu-sound-label" aria-pressed="false">Выключены</button>
+          </div>
+          <button class="button button-outline" id="auth-button" type="button">Войти <span aria-hidden="true">↗</span></button>
+        </div>
+        <button class="button button-dark header-create" id="create-button" type="button"><span class="button-plus" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span> Разместить</button>
+        <button class="profile-button hidden" id="profile-button" type="button" aria-label="Открыть профиль" title="Открыть профиль"></button>
+        <button class="menu-backdrop" id="menu-backdrop" type="button" aria-label="Закрыть меню" tabindex="-1"></button>
+        <button class="mobile-menu" id="menu-button" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu-panel"><span></span><span></span></button>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-pattern" aria-hidden="true"></div>
+          <div class="hero-content">
+            <div class="eyebrow"><span class="pulse-dot"></span> СВОИМ — О СВОЁМ</div>
+            <h1>Вещи находят<br />новых <strong>людей.</strong></h1>
+            <p>Покупайте, продавайте и обменивайтесь рядом.<br class="desktop-break" /> Просто, по-человечески, по всему Кыргызстану.</p>
+            <button class="button button-dark hero-button" id="explore-button" type="button">Найти что-то своё <span aria-hidden="true">↘</span></button>
+          </div>
+          <div class="hero-side">
+            <div class="hero-sticker" aria-hidden="true">
+              <span class="sticker-star">✳</span>
+              <span>Новые<br />истории<br />старых вещей</span>
+              <span class="sticker-caption">KG · 2026</span>
+            </div>
+            <div class="hero-note">РАЗМЕЩЕНИЕ<br /><b>БЕСПЛАТНО</b><span>для первых пользователей</span></div>
+          </div>
+          <div class="hero-bottom">
+            <a class="footer-right hero-credit" href="https://instagram.com/jusupbekoov" target="_blank" rel="noopener noreferrer" aria-label="Instagram: @jusupbekoov">
+              <svg class="instagram-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><circle cx="17.5" cy="6.8" r="1" fill="currentColor"/></svg>
+              <span>Dev by jspbkv</span>
+            </a>
+            <span class="scroll-hint">ЛИСТАЙТЕ НИЖЕ <span aria-hidden="true">↓</span></span>
+          </div>
+        </section>
+
+        <section class="intro-strip" aria-label="Преимущества GoMarket">
+          <span>Покупка напрямую</span><i>✳</i><span>Оплата при встрече</span><i>✳</i><span>Обмен — по договорённости</span><i>✳</i><span>Объявления рядом</span>
+        </section>
+
+        <section class="market-section" id="market">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow muted-eyebrow">ВАША СЛЕДУЮЩАЯ НАХОДКА</div>
+              <h2>Ищем и находим<span class="heading-period">.</span></h2>
+            </div>
+            <div class="heading-right"><span id="results-count">Загружаем объявления…</span><span class="loading-indicator hidden" id="loading-indicator" role="status" aria-label="Обновляем объявления"></span><button class="button button-refresh" id="refresh-button" type="button" aria-label="Обновить объявления">↻ <span>Обновить</span></button></div>
+          </div>
+          <div class="catalog-toolbar">
+            <button class="button button-outline filter-toggle" id="filter-toggle" type="button" aria-expanded="false" aria-controls="filters-panel"><span aria-hidden="true">☷</span> Фильтры <span class="filter-count hidden" id="filter-count">0</span><span class="filter-chevron" aria-hidden="true">▲</span></button>
+            <div class="sort-control"><label id="sort-label" for="sort-select">Сортировка</label><select id="sort-select" class="input select-input"><option value="newest">Сначала новые</option><option value="price-asc">Сначала дешевле</option><option value="price-desc">Сначала дороже</option></select></div>
+          </div>
+          <div class="market-layout">
+            <aside class="filters-panel" id="filters-panel" aria-label="Фильтры товаров" hidden>
+              <div class="filters-title"><span>ФИЛЬТРЫ</span><button id="reset-filters" type="button">Сбросить</button></div>
+              <label class="field-label" for="category-filter">Категория</label>
+              <select id="category-filter" class="input select-input"><option value="">Все товары</option></select>
+              <label class="field-label" for="region-filter">Область</label>
+              <select id="region-filter" class="input select-input"><option value="">Весь Кыргызстан</option></select>
+              <label class="field-label" for="city-filter">Город</label>
+              <select id="city-filter" class="input select-input" disabled><option value="">Все города</option></select>
+              <div class="price-label-row"><span class="field-label">Цена, сом</span><span class="price-currency">KGS</span></div>
+              <div class="price-fields"><input class="input" id="price-min" type="number" min="0" placeholder="От" aria-label="Минимальная цена" /><span>—</span><input class="input" id="price-max" type="number" min="0" placeholder="До" aria-label="Максимальная цена" /></div>
+              <label class="toggle-row" for="exchange-filter"><span><b>Можно обменять</b><small>Есть вариант обмена</small></span><input id="exchange-filter" type="checkbox" /><span class="toggle-ui" aria-hidden="true"></span></label>
+              <div class="filter-divider"></div>
+              <div class="safe-note"><span class="safe-icon">↗</span><span><b>Безопасная сделка</b><small>Встречайтесь лично и проверяйте товар. Оплата — напрямую продавцу.</small></span></div>
+            </aside>
+            <div class="listing-area">
+              <div class="my-listings-toolbar hidden" id="my-listings-toolbar"></div>
+              <div class="active-filters" id="active-filters" aria-live="polite"></div>
+              <div class="listing-grid" id="listing-grid" aria-live="polite"></div>
+              <div class="empty-state hidden" id="empty-state">
+                <h3>На данный момент ничего не найдено</h3>
+                <p class="empty-state-note hidden"></p>
+                <button class="button button-outline empty-retry hidden" id="retry-load" type="button">Попробовать ещё раз ↻</button>
+              </div>
+              <button class="button button-outline load-more hidden" id="load-more" type="button">Показать ещё <span aria-hidden="true">↓</span></button>
+            </div>
+          </div>
+        </section>
+
+        <section class="advert-section" id="advertising">
+          <div class="ad-section-heading">
+            <div><div class="eyebrow muted-eyebrow">ХОРОШАЯ ИДЕЯ ДЛЯ БИЗНЕСА</div><h2>Пусть о вас<br />узнают рядом<span class="heading-period">.</span></h2></div>
+            <div class="ad-section-aside"><p>У вас есть дело, которое хочется показать? Разместите рекламную публикацию бесплатно и расскажите о себе людям по соседству.</p><button class="button button-dark" id="create-ad-button" type="button">Добавить рекламу <span aria-hidden="true">↗</span></button></div>
+          </div>
+          <div class="ad-feed-top"><span>РЕКЛАМА ОТ МЕСТНЫХ</span><span>ПУБЛИКАЦИИ СООБЩЕСТВА <i>✳</i></span></div>
+          <div class="ad-grid" id="ad-grid" aria-live="polite"></div>
+          <div class="ad-empty hidden" id="ad-empty"><p>На данный момент ничего не найдено</p></div>
+          <div class="ad-footer"><span>Реклама помечена. Публикации размещают сами авторы.</span><button class="text-button" id="ad-rules-button" type="button">Правила размещения ↗</button></div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <a class="brand footer-brand" href="#"><span class="brand-mark" aria-hidden="true"><img src="/image/logo32x32.png" alt="" /></span><span>Go<span class="brand-light">Market</span></span></a>
+        <!-- <span>Площадка для вещей, которые нужны друг другу.</span> -->
+        <nav class="footer-links" aria-label="Информация о GoMarket">
+          <button class="text-button" id="site-rules-button" type="button">Правила сайта</button>
+          <button class="text-button" id="privacy-button" type="button">Данные и конфиденциальность</button>
+        </nav>
+        <a class="footer-right" href="https://instagram.com/jusupbekoov" target="_blank" rel="noopener noreferrer" aria-label="Instagram: @jusupbekoov">
+          <svg class="instagram-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><circle cx="17.5" cy="6.8" r="1" fill="currentColor"/></svg>
+          <span id="footer-credit">Dev by jspbkv</span>
+        </a>
+      </footer>
+      <div class="toast-region" id="toast-region" role="status" aria-live="polite"></div>
+    </div>
+
+    <dialog class="modal" id="listing-dialog" aria-labelledby="listing-dialog-title">
+      <div class="modal-header"><div><div class="eyebrow muted-eyebrow">ОБЪЯВЛЕНИЕ</div><h2 id="listing-dialog-title">Новая находка</h2></div><button class="icon-button" data-close="listing-dialog" aria-label="Закрыть">×</button></div>
+      <form id="listing-form" class="modal-form">
+        <input type="hidden" name="id" />
+        <label class="field-label" for="listing-title">Что продаёте?</label>        <input class="input" id="listing-title" name="title" minlength="2" maxlength="80" required placeholder="Например, плёночный фотоаппарат" />
+        <div class="form-two"><div><label class="field-label" for="listing-category">Категория</label><select class="input select-input" id="listing-category" name="category" required></select></div><div><label class="field-label" for="listing-price">Цена, сом</label><input class="input" id="listing-price" name="price" type="number" min="0" required placeholder="0" /></div></div>
+        <div class="form-two"><div><label class="field-label" for="listing-region">Область / город</label><select class="input select-input" id="listing-region" name="region" required></select></div><div><label class="field-label" for="listing-city">Город</label><select class="input select-input" id="listing-city" name="city" required></select></div></div>
+        <label class="field-label" for="listing-description">Расскажите о вещи</label><textarea class="input textarea" id="listing-description" name="description" minlength="5" maxlength="700" required placeholder="Опишите товар, комплектацию и детали…"></textarea>
+        <div class="form-two"><div><label class="field-label" for="seller-name">Как к вам обращаться?</label><input class="input" id="seller-name" name="sellerName" minlength="1" maxlength="50" required placeholder="Имя продавца" /></div><div><label class="field-label" for="seller-phone">Телефон для связи</label><input class="input" id="seller-phone" name="sellerPhone" type="tel" minlength="7" maxlength="20" required placeholder="+996 555 123 456" /></div></div>
+        <div class="photo-upload-area">
+          <label class="photo-upload" for="listing-images"><span class="upload-mark">＋</span><span><b>Добавить фотографии</b><small id="image-filename">До 3 фотографий · JPG, PNG или WebP · до 2 МБ каждая</small></span><input id="listing-images" name="images" type="file" accept="image/jpeg,image/png,image/webp" multiple /></label>
+          <div class="photo-preview-grid" id="photo-preview-grid" aria-live="polite"></div>
+        </div>
+        <label class="check-row"><input type="checkbox" name="exchange" /><span><b>Рассмотрю обмен</b><small>Условия можно обсудить напрямую</small></span></label>
+        <div class="form-note">Оплата проходит напрямую между вами и покупателем — вне GoMarket.</div>
+        <div class="modal-actions"><button class="button button-outline" type="button" data-close="listing-dialog">Отмена</button><button class="button button-dark" type="submit">Опубликовать <span aria-hidden="true">↗</span></button></div>
+      </form>
+    </dialog>
+
+    <dialog class="modal detail-modal" id="detail-dialog" aria-label="Информация о товаре">
+      <div class="detail-body" id="detail-body"></div>
+    </dialog>
+
+    <dialog class="modal" id="ad-dialog" aria-labelledby="ad-dialog-title">
+      <div class="modal-header"><div><div class="eyebrow muted-eyebrow">СООБЩИТЕ О СВОЁМ ДЕЛЕ</div><h2 id="ad-dialog-title">Новая публикация</h2></div><button class="icon-button" data-close="ad-dialog" aria-label="Закрыть">×</button></div>
+      <form id="ad-form" class="modal-form">
+        <input type="hidden" name="id" />
+        <label class="field-label" for="ad-title">Заголовок</label><input class="input" id="ad-title" name="title" minlength="2" required maxlength="70" placeholder="Например, мастерская у дома" />
+        <label class="field-label" for="ad-description">Чем вы занимаетесь?</label><textarea class="input textarea" id="ad-description" name="description" minlength="5" required maxlength="240" placeholder="Коротко расскажите о себе и вашем предложении"></textarea>
+        <div class="form-two"><div><label class="field-label" for="ad-location">Город</label><select class="input select-input" id="ad-location" name="city" required></select></div><div><label class="field-label" for="ad-contact">Контакт</label><input class="input" id="ad-contact" name="contact" minlength="5" required maxlength="50" placeholder="+996 555 123 456" /></div></div>
+        <label class="field-label" for="ad-link">Ссылка (необязательно)</label><input class="input" id="ad-link" name="url" type="url" placeholder="" />
+        <div class="ad-photo-upload-area">
+          <label class="photo-upload" for="ad-image"><span class="upload-mark">＋</span><span><b id="ad-image-label">Добавить фотографию</b><small id="ad-image-filename">Одна фотография · JPG, PNG или WebP · до 2 МБ</small></span><input id="ad-image" name="image" type="file" accept="image/jpeg,image/png,image/webp" /></label>
+          <div class="ad-photo-preview" id="ad-photo-preview" aria-live="polite"></div>
+        </div>
+        <div class="form-note">Реклама бесплатна на старте и публикуется без предварительной проверки. Не публикуйте личные данные других людей.</div>
+        <div class="modal-actions"><button class="button button-outline" type="button" data-close="ad-dialog">Отмена</button><button class="button button-dark" type="submit">Опубликовать <span aria-hidden="true">↗</span></button></div>
+      </form>
+    </dialog>
+
+    <dialog class="modal auth-modal" id="auth-dialog" aria-labelledby="auth-dialog-title">
+      <div class="auth-topline"><span class="brand-mark" aria-hidden="true"><img src="/image/logo32x32.png" alt="" /></span><button class="icon-button" data-close="auth-dialog" aria-label="Закрыть">×</button></div>
+      <div class="eyebrow muted-eyebrow">РАДЫ ВАС ВИДЕТЬ</div><h2 id="auth-dialog-title">Всё начинается<br />с приветствия.</h2><p class="auth-copy">Войдите, чтобы публиковать свои товары и объявления.</p>
+      <button class="button google-button" id="google-button" type="button"><span class="google-g">G</span> Продолжить с Google <span>↗</span></button>
+      <p class="auth-footnote">Все для безопасности наших клиентов.<br />Покупки и оплата всегда происходят напрямую.</p>
+    </dialog>
+
+    <dialog class="modal profile-modal" id="profile-dialog" aria-label="Профиль">
+      <div id="profile-content"></div>
+    </dialog>
+
+    <dialog class="modal small-modal" id="rules-dialog" aria-labelledby="rules-title">
+      <div class="modal-header"><div><div class="eyebrow muted-eyebrow">ПРОСТО И ЧЕСТНО</div><h2 id="rules-title">Правила рекламы</h2></div><button class="icon-button" data-close="rules-dialog" aria-label="Закрыть">×</button></div>
+      <div class="rules-copy"><p>Публикации и баннеры размещаются авторами самостоятельно и бесплатно на старте GoMarket. Публикация помечается «Реклама» и может быть скрыта другими пользователями.</p><ul><li>Рассказывайте только о собственном бизнесе и предложении.</li><li>Не размещайте обманные, незаконные или вводящие в заблуждение публикации.</li><li>Не публикуйте персональные данные без согласия.</li><li>Пожаловаться можно прямо на публикацию. Повторные жалобы скрывают её до проверки.</li></ul></div>
+    </dialog>
+    <dialog class="modal small-modal" id="site-rules-dialog" aria-labelledby="site-rules-title">
+      <div class="modal-header"><div><div class="eyebrow muted-eyebrow">ПРОСТО И ЧЕСТНО</div><h2 id="site-rules-title">Правила сайта</h2></div><button class="icon-button" data-close="site-rules-dialog" aria-label="Закрыть">×</button></div>
+      <div class="rules-copy" id="site-rules-copy">
+        <p>GoMarket помогает людям находить покупателей и продавцов товаров в Кыргызстане.</p>
+        <ul>
+          <li>Публикуйте точные описания и фотографии товара, которым вы вправе распоряжаться.</li>
+          <li>Не размещайте незаконные товары, мошеннические предложения, чужие персональные данные или вводящий в заблуждение контент.</li>
+          <li>Обмен — только по договорённости пользователей. GoMarket не участвует в переговорах и не принимает оплату.</li>
+          <li>Проверяйте товар и договаривайтесь о безопасной встрече. Не переводите деньги незнакомым людям заранее.</li>
+          <li>Жалобы помогают автоматически скрывать публикации.</li>
+        </ul>
+        <p class="policy-draft-note">UPD 08.11.2026</p>
+      </div>
+    </dialog>
+    <dialog class="modal small-modal" id="privacy-dialog" aria-labelledby="privacy-title">
+      <div class="modal-header"><div><div class="eyebrow muted-eyebrow">ПРОЗРАЧНО О ДАННЫХ</div><h2 id="priv  acy-title">Данные и конфиденциальность</h2></div><button class="icon-button" data-close="privacy-dialog" aria-label="Закрыть">×</button></div>
+      <div class="rules-copy" id="privacy-copy">
+        <p>Система тщательно проверяет подозрительные действия и блокирует пользователя автоматически.</p>
+        <ul>
+          <li>При входе, сайт использует идентификатор пользователя и только доступные данные профиля.</li>
+          <li>Имя, телефон, описание, цена, город и фотографии товара, а также контакты и ссылки рекламы доступны только посетителям сайта.</li>
+          <li>Избранное доступно только владельцу аккаунта. Жалобы связаны с аккаунтом и публикацией; три уникальные жалобы автоматически скрывают материал.</li>
+          <li>Язык и тема сохраняются локально в браузере. GoMarket не принимает оплату и не управляет сделками между пользователями внутри сайта.</li>
+          <li>Свои публикации можно редактировать и удалять. Самостоятельное удаление аккаунта и запросов на удаление данных в интерфейсе пока не предусмотрено.</li>
+        </ul>
+        <p class="policy-draft-note">UPD 08.11.2026</p>
+      </div>
+    </dialog>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
