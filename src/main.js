@@ -80,7 +80,8 @@ const translations = {
     "Отмена": "Cancel", "Опубликовать": "Publish", "СООБЩИТЕ О СВОЁМ ДЕЛЕ": "TELL PEOPLE ABOUT YOUR BUSINESS",
     "Новая публикация": "New post", "Заголовок": "Title", "Чем вы занимаетесь?": "What do you do?",
     "Коротко расскажите о себе и вашем предложении": "Briefly describe your business and offer",
-    "Контакт": "Contact", "Ссылка (необязательно)": "Link (optional)",
+    "Контакт": "Contact", "Instagram (необязательно)": "Instagram (optional)",
+    "Укажите корректную ссылку на профиль Instagram.": "Enter a valid link to an Instagram profile.",
     "Реклама бесплатна на старте и публикуется без предварительной проверки. Не публикуйте личные данные других людей.": "Ads are free at launch and published without pre-screening. Never share someone else's personal information.",
     "РАДЫ ВАС ВИДЕТЬ": "WELCOME BACK", "Всё начинается<br />с приветствия.": "Good to<br />see you again.",
     "Войдите, чтобы публиковать свои товары и объявления.": "Sign in to post items and local ads.",
@@ -103,7 +104,7 @@ const translations = {
     "UPD 08.11.2026": "These rules are an informational draft and must be reviewed and completed by the platform operator before public launch.",
     "Система тщательно проверяет подозрительные действия и блокирует пользователя автоматически.": "This describes the current GoMarket implementation; it is not an approved legal privacy policy.",
     "При входе Google и Supabase обрабатывают данные аккаунта. Приложение использует идентификатор пользователя и доступные данные профиля.": "Google and Supabase process account data during sign-in. The app uses your user ID and available profile information.",
-    "Имя, телефон, описание, цена, город и фотографии товара, а также контакты и ссылки рекламы доступны посетителям сайта. Изображения хранятся в публичном хранилище.": "Your name, phone, item details, price, city, photos, and ad contact details and links are visible to site visitors. Images are stored in public storage.",
+    "Имя, телефон, Instagram, описание, цена, город и фотографии товара, а также контакты и ссылки рекламы доступны посетителям сайта. Изображения хранятся в публичном хранилище.": "Your name, phone, Instagram, item details, price, city, photos, and ad contact details and links are visible to site visitors. Images are stored in public storage.",
     "Избранное доступно только владельцу аккаунта. Жалобы связаны с аккаунтом и публикацией; три уникальные жалобы автоматически скрывают материал. Ручная модерация и апелляции пока не реализованы.": "Favorites are private to your account. Reports are associated with your account and the reported post; three unique reports hide it automatically. Manual moderation and appeals are not yet available.",
     "Язык и тема сохраняются локально в браузере. GoMarket не принимает оплату и не управляет сделками между пользователями.": "Language and theme preferences are stored locally in your browser. GoMarket does not process payments or manage user transactions.",
     "Свои публикации можно редактировать и удалять. Самостоятельное удаление аккаунта и запросов на удаление данных в интерфейсе пока не предусмотрено.": "You can edit or delete your own posts. The interface does not yet support account deletion or data-removal requests.",
@@ -198,7 +199,8 @@ const translations = {
     "Отмена": "Жокко чыгаруу", "Опубликовать": "Жарыялоо", "СООБЩИТЕ О СВОЁМ ДЕЛЕ": "ИШИҢИЗ ЖӨНҮНДӨ АЙТЫҢЫЗ",
     "Новая публикация": "Жаңы жарыя", "Заголовок": "Аталышы", "Чем вы занимаетесь?": "Ишиңиз жөнүндө",
     "Коротко расскажите о себе и вашем предложении": "Өзүңүз жана сунушуңуз тууралуу кыскача айтыңыз",
-    "Контакт": "Байланыш", "Ссылка (необязательно)": "Шилтеме (милдеттүү эмес)",
+    "Контакт": "Байланыш", "Instagram (необязательно)": "Instagram (милдеттүү эмес)",
+    "Укажите корректную ссылку на профиль Instagram.": "Instagram профилинин туура шилтемесин киргизиңиз.",
     "Реклама бесплатна на старте и публикуется без предварительной проверки. Не публикуйте личные данные других людей.": "Башында жарнама акысыз жана текшерүүсүз жарыяланат. Башкалардын жеке маалыматтарын жарыялабаңыз.",
     "РАДЫ ВАС ВИДЕТЬ": "КОШ КЕЛИҢИЗ", "Всё начинается<br />с приветствия.": "Баары<br />саламдашуудан башталат.",
     "Войдите, чтобы публиковать свои товары и объявления.": "Товарыңызды жана жарыяларды кошуу үчүн кириңиз.",
@@ -214,7 +216,7 @@ const translations = {
     "UPD 08.11.2026": "Бул эрежелердин маалыматтык долбоору. Коомчулукка чыгардан мурун сайттын ээси текшерип, толукташы керек.",
     "Система тщательно проверяет подозрительные действия и блокирует пользователя автоматически.": "Бул GoMarket'тин учурдагы версиясынын сүрөттөлүшү, бекитилген юридикалык купуялык саясаты эмес.",
     "При входе сайт использует идентификатор пользователя и только доступные данные профиля.": "Кирүүдө сайт колдонуучунун ID'син жана жеткиликтүү профиль маалыматын гана колдонот.",
-    "Имя, телефон, описание, цена, город и фотографии товара, а также контакты и ссылки рекламы доступны посетителям сайта. Изображения хранятся в публичном хранилище.": "Атыңыз, телефонуңуз, товар тууралуу маалымат, баасы, шаары, сүрөттөрү жана жарнаманын байланыш маалыматтары сайтка киргендерге көрүнөт. Сүрөттөр ачык сактагычта турат.",
+    "Имя, телефон, Instagram, описание, цена, город и фотографии товара, а также контакты и ссылки рекламы доступны посетителям сайта. Изображения хранятся в публичном хранилище.": "Атыңыз, телефонуңуз, Instagram, товар тууралуу маалымат, баасы, шаары, сүрөттөрү жана жарнаманын байланыш маалыматтары сайтка киргендерге көрүнөт. Сүрөттөр ачык сактагычта турат.",
     "Избранное доступно только владельцу аккаунта. Жалобы связаны с аккаунтом и публикацией; три уникальные жалобы автоматически скрывают материал. Ручная модерация и апелляции пока не реализованы.": "Тандалгандар аккаунт ээси үчүн гана көрүнөт. Даттануулар аккаунт жана жарыя менен байланышат; үч өзүнчө даттануу материалды автоматтык жашырат. Кол менен модерация жана апелляция азырынча жок.",
     "Язык и тема сохраняются локально в браузере. GoMarket не принимает оплату и не управляет сделками между пользователями.": "Тил жана тема браузерде гана сакталат. GoMarket төлөм кабыл албайт жана колдонуучулардын бүтүмдөрүн башкарбайт.",
     "Свои публикации можно редактировать и удалять. Самостоятельное удаление аккаунта и запросов на удаление данных в интерфейсе пока не предусмотрено.": "Өз жарыяларыңызды өзгөртүп же өчүрө аласыз. Интерфейсте аккаунтту же маалыматтарды өчүрүү өтүнүчү азырынча жок.",
@@ -317,6 +319,20 @@ const escapeHTML = (value = "") => String(value).replace(/[&<>"']/g, (character)
 
 function normalizedPhone(phone) {
   return String(phone || "").replace(/[^\d+]/g, "");
+}
+
+function normalizedInstagramUrl(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  try {
+    const url = new URL(raw);
+    if (!["https:", "http:"].includes(url.protocol) || !["instagram.com", "www.instagram.com"].includes(url.hostname.toLowerCase()) || url.port) return "";
+    if (url.username || url.password) return "";
+    const match = url.pathname.match(/^\/([A-Za-z0-9._]{1,30})\/?$/);
+    return match ? `https://www.instagram.com/${match[1]}/` : "";
+  } catch {
+    return "";
+  }
 }
 
 function initials(name = "G") {
@@ -547,6 +563,7 @@ function applyTranslations() {
     "label[for='listing-description']": t("Расскажите о вещи"),
     "label[for='seller-name']": t("Как к вам обращаться?"),
     "label[for='seller-phone']": t("Телефон для связи"),
+    "label[for='seller-instagram']": t("Instagram (необязательно)"),
     ".photo-upload b": t("Добавить фотографию"),
     ".check-row b": t("Рассмотрю обмен"),
     ".check-row small": t("Условия можно обсудить напрямую"),
@@ -559,7 +576,7 @@ function applyTranslations() {
     "label[for='ad-description']": t("Чем вы занимаетесь?"),
     "label[for='ad-location']": t("Город"),
     "label[for='ad-contact']": t("Контакт"),
-    "label[for='ad-link']": t("Ссылка (необязательно)"),
+    "label[for='ad-instagram']": t("Instagram (необязательно)"),
     "#ad-form .form-note": t("Реклама бесплатна на старте и публикуется без предварительной проверки. Не публикуйте личные данные других людей."),
     "#ad-form [data-close]": t("Отмена"),
     "#ad-form button[type='submit']": `${t("Опубликовать")} <span aria-hidden="true">↗</span>`,
@@ -590,7 +607,7 @@ function applyTranslations() {
     "#privacy-title": t("Данные и конфиденциальность"),
     "#privacy-copy > p:first-child": t("Система тщательно проверяет подозрительные действия и блокирует пользователя автоматически."),
     "#privacy-copy li:nth-child(1)": t("При входе Google и Supabase обрабатывают данные аккаунта. Приложение использует идентификатор пользователя и доступные данные профиля."),
-    "#privacy-copy li:nth-child(2)": t("Имя, телефон, описание, цена, город и фотографии товара, а также контакты и ссылки рекламы доступны посетителям сайта. Изображения хранятся в публичном хранилище."),
+    "#privacy-copy li:nth-child(2)": t("Имя, телефон, Instagram, описание, цена, город и фотографии товара, а также контакты и ссылки рекламы доступны посетителям сайта. Изображения хранятся в публичном хранилище."),
     "#privacy-copy li:nth-child(3)": t("Избранное доступно только владельцу аккаунта. Жалобы связаны с аккаунтом и публикацией; три уникальные жалобы автоматически скрывают материал. Ручная модерация и апелляции пока не реализованы."),
     "#privacy-copy li:nth-child(4)": t("Язык и тема сохраняются локально в браузере. GoMarket не принимает оплату и не управляет сделками между пользователями."),
     "#privacy-copy li:nth-child(5)": t("Свои публикации можно редактировать и удалять. Самостоятельное удаление аккаунта и запросов на удаление данных в интерфейсе пока не предусмотрено."),
@@ -609,11 +626,12 @@ function applyTranslations() {
   $("#listing-description").placeholder = t("Опишите товар, комплектацию и детали…");
   $("#seller-name").placeholder = t("Имя продавца");
   $("#seller-phone").placeholder = t("Телефон для связи");
+  $("#seller-instagram").placeholder = "Например @smartx.dev";
   $("#ad-title").placeholder = locale === "en" ? "e.g. Phone repair nearby" : locale === "ky" ? "Мисалы, телефон оңдоочу жай" : "Например, ремонт телефонов рядом";
   $("#ad-description").placeholder = t("Коротко расскажите о себе и вашем предложении");
   $("#ad-contact").placeholder = t("Телефон для связи");
   $("#listing-price").placeholder = "0";
-  $("#ad-link").placeholder = locale === "en" ? "" : "";
+  $("#ad-instagram").placeholder = "Например @smartx.dev";
   $("#theme-label").textContent = locale === "en" ? "Theme" : locale === "ky" ? "Тема" : "Тема";
   $("#language-label").textContent = locale === "en" ? "Language" : locale === "ky" ? "Тил" : "Язык";
   const themeNames = locale === "en"
@@ -950,7 +968,7 @@ function renderPhotoPreviews() {
   const remain = 3 - photoUrls.length;
   $("#image-filename").textContent = photoUrls.length
     ? `${photoUrls.length} / 3 · ${remain ? (locale === "en" ? `${remain} more allowed` : locale === "ky" ? `Дагы ${remain} кошсо болот` : `Можно добавить ещё ${remain}`) : (locale === "en" ? "Maximum reached" : locale === "ky" ? "Чеги толду" : "Максимум достигнут")}`
-    : `${addLabel} · ${locale === "en" ? "JPG, PNG or WebP · 2 MB each" : locale === "ky" ? "JPG, PNG же WebP · ар бири 2 МБ" : "JPG, PNG или WebP · до 2 МБ каждая"}`;
+    : `${addLabel} · ${locale === "en" ? "JPG, PNG, WebP" : locale === "ky" ? "JPG, PNG, WebP" : "JPG, PNG, WebP"}`;
   $("#listing-images").disabled = photoUrls.length >= 3;
 }
 
@@ -961,8 +979,8 @@ function renderAdPhotoPreview() {
   const label = $("#ad-image-label");
   label.textContent = locale === "en" ? (adPhotoUrl ? "Change photo" : "Add a photo") : locale === "ky" ? (adPhotoUrl ? "Сүрөттү алмаштыруу" : "Сүрөт кошуу") : (adPhotoUrl ? "Заменить фотографию" : "Добавить фотографию");
   filename.textContent = adPhotoUrl
-    ? (locale === "en" ? "1 photo selected · up to 2 MB" : locale === "ky" ? "1 сүрөт тандалды · 2 МБ чейин" : "1 фотография выбрана · до 2 МБ")
-    : (locale === "en" ? "One photo · JPG, PNG or WebP · up to 2 MB" : locale === "ky" ? "Бир сүрөт · JPG, PNG же WebP · 2 МБ чейин" : "Одна фотография · JPG, PNG или WebP · до 2 МБ");
+    ? (locale === "en" ? "1 photo selected" : locale === "ky" ? "1 сүрөт тандалды" : "1 фотография выбрана")
+    : (locale === "en" ? "One photo · JPG, PNG, WebP" : locale === "ky" ? "Бир сүрөт · JPG, PNG, WebP" : "Одна фотография · JPG, PNG, WebP");
   preview.innerHTML = adPhotoUrl
     ? `<div class="photo-preview"><img src="${escapeHTML(adPhotoUrl)}" alt="${locale === "en" ? "Advertisement photo preview" : locale === "ky" ? "Жарнаманын сүрөтүн алдын ала көрүү" : "Предпросмотр фотографии рекламы"}"><button class="photo-remove" type="button" data-remove-ad-photo aria-label="${locale === "en" ? "Remove photo" : locale === "ky" ? "Сүрөттү өчүрүү" : "Удалить фотографию"}">×</button></div>`
     : "";
@@ -1123,14 +1141,14 @@ function renderAds() {
   $("p", elements.adEmpty).textContent = t("На данный момент ничего не найдено");
   elements.adGrid.innerHTML = ads.map((ad, index) => {
     const owner = isOwner(ad);
-    const url = /^https?:\/\//i.test(ad.url || "") ? ad.url : "";
+    const instagramUrl = normalizedInstagramUrl(ad.instagramUrl || ad.instagram_url);
     const contact = `<a class="button ad-contact" href="tel:${escapeHTML(normalizedPhone(ad.contact))}">${t("Позвонить")} <span aria-hidden="true">↗</span></a>`;
     return `<article class="ad-card ad-tone-${index % 3}${ad.imageUrl ? " has-image" : ""}">
       ${ad.imageUrl ? `<img class="ad-photo" src="${escapeHTML(ad.imageUrl)}" alt="" loading="lazy">` : ""}
       <div class="ad-card-top"><span class="ad-label"><span>✳</span> ${t("РЕКЛАМА")}</span><span class="ad-card-location">⌖ ${escapeHTML(translatedCity(ad.city))}</span></div>
       <div class="ad-card-content"><div class="ad-orbit" aria-hidden="true"></div><h3>${escapeHTML(ad.title)}</h3><p>${escapeHTML(ad.description)}</p><div class="ad-card-actions">
         ${contact}
-        ${url ? `<a class="ad-link" href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">${t("Сайт")}</a>` : ""}
+        ${instagramUrl ? `<a class="button ad-contact" href="${escapeHTML(instagramUrl)}" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a>` : ""}
         ${owner ? `<button class="icon-button ad-edit" data-edit-ad="${escapeHTML(ad.id)}" aria-label="Изменить публикацию">✎</button><button class="icon-button ad-delete" data-delete-ad="${escapeHTML(ad.id)}" aria-label="Удалить публикацию">×</button>` : ""}
       </div></div><button class="report-button" type="button" data-report="ad" data-id="${escapeHTML(ad.id)}">${t("Пожаловаться")} <span aria-hidden="true">↗</span></button>
     </article>`;
@@ -1322,6 +1340,7 @@ function openListingForm(listing = null) {
   elements.listingForm.elements.description.value = listing?.description || "";
   elements.listingForm.elements.sellerName.value = listing?.sellerName || userLabel();
   elements.listingForm.elements.sellerPhone.value = listing?.sellerPhone || currentUser.phone || "";
+  elements.listingForm.elements.instagramUrl.value = listing?.instagramUrl || listing?.instagram_url || "";
   elements.listingForm.elements.exchange.checked = Boolean(listing?.exchange);
   $("#listing-region").value = listing?.region || "";
   refreshCityOptions($("#listing-region").value, $("#listing-city"), "Выберите город");
@@ -1339,7 +1358,7 @@ function openAdForm(ad = null) {
   elements.adForm.elements.description.value = ad?.description || "";
   elements.adForm.elements.city.value = ad?.city || "";
   elements.adForm.elements.contact.value = ad?.contact || "";
-  elements.adForm.elements.url.value = ad?.url || "";
+  elements.adForm.elements.instagramUrl.value = ad?.instagramUrl || ad?.instagram_url || "";
   adPhotoUrl = ad?.imageUrl || "";
   renderAdPhotoPreview();
   syncCustomSelects(elements.adForm);
@@ -1394,6 +1413,13 @@ async function handleListingSubmit(event) {
   submit.innerHTML = t("Публикуем…");
   try {
     const fields = new FormData(form);
+    const instagramValue = String(fields.get("instagramUrl")).trim();
+    const instagramUrl = normalizedInstagramUrl(instagramValue);
+    if (instagramValue && !instagramUrl) {
+      showToast(t("Укажите корректную ссылку на профиль Instagram."), "error");
+      $("#seller-instagram").focus();
+      return;
+    }
     const id = fields.get("id");
     const existing = id ? getListing(id) : null;
     const saved = await data.saveListing({
@@ -1406,6 +1432,7 @@ async function handleListingSubmit(event) {
       description: String(fields.get("description")).trim(),
       sellerName: String(fields.get("sellerName")).trim(),
       sellerPhone: String(fields.get("sellerPhone")).trim(),
+      instagramUrl,
       exchange: fields.has("exchange"),
       imageUrls: photoUrls.slice(0, 3),
       createdAt: existing?.createdAt,
@@ -1435,13 +1462,20 @@ async function handleAdSubmit(event) {
   submit.innerHTML = t("Публикуем…");
   try {
     const fields = new FormData(form);
+    const instagramValue = String(fields.get("instagramUrl")).trim();
+    const instagramUrl = normalizedInstagramUrl(instagramValue);
+    if (instagramValue && !instagramUrl) {
+      showToast(t("Укажите корректную ссылку на профиль Instagram."), "error");
+      $("#ad-instagram").focus();
+      return;
+    }
     const ad = await data.saveAd({
       id: fields.get("id") || undefined,
       title: String(fields.get("title")).trim(),
       description: String(fields.get("description")).trim(),
       city: fields.get("city"),
       contact: String(fields.get("contact")).trim(),
-      url: String(fields.get("url")).trim(),
+      instagramUrl,
       imageUrl: adPhotoUrl,
     }, currentUser);
     ads = [ad, ...ads.filter((item) => item.id !== ad.id)];
@@ -1504,7 +1538,7 @@ function openDetails(id) {
   const owner = isOwner(item);
   const status = item.status || "active";
   const phone = normalizedPhone(item.sellerPhone || item.seller_phone);
-  const whatsapp = `https://wa.me/${phone.replace("+", "")}`;
+  const instagramUrl = normalizedInstagramUrl(item.instagramUrl || item.instagram_url);
   $("#detail-body").innerHTML = `
     <div class="detail-visual">${listingVisual(item, true)}${item.imageUrls?.length > 1 ? renderCarouselControls(item.imageUrls.length, "detail") : ""}<button class="icon-button detail-close" data-close="detail-dialog" aria-label="${locale === "en" ? "Close" : locale === "ky" ? "Жабуу" : "Закрыть"}">×</button></div>
     <div class="detail-content">
@@ -1513,7 +1547,7 @@ function openDetails(id) {
       <p class="detail-description">${escapeHTML(item.description)}</p>
       <div class="detail-place">⌖ ${escapeHTML(translatedCity(item.city))}${item.region && item.region !== item.city ? `, ${escapeHTML(translatedRegion(item.region))}` : ""}${item.exchange ? `<span class="exchange-pill">${t("Можно обменять")}</span>` : ""}</div>
       <div class="seller-card"><span class="seller-avatar seller-avatar-large">${escapeHTML(initials(item.sellerName || item.seller_name))}</span><span class="seller-details"><b>${escapeHTML(item.sellerName || item.seller_name)}</b><small>${t("Автор объявления")}</small></span>${owner ? `<span class="owner-marker">${locale === "en" ? "YOURS" : locale === "ky" ? "СИЗДИКИ" : "ВАШЕ"}</span>` : ""}</div>
-      ${status === "active" ? `<div class="detail-contact"><a class="button button-dark contact-phone" href="tel:${escapeHTML(phone)}">${t("Позвонить")} <span aria-hidden="true">↗</span></a><a class="button button-outline contact-whatsapp" href="${escapeHTML(whatsapp)}" target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a></div>
+      ${status === "active" ? `<div class="detail-contact"><a class="button button-dark contact-phone" href="tel:${escapeHTML(phone)}">${t("Позвонить")} <span aria-hidden="true">↗</span></a>${instagramUrl ? `<a class="button button-outline contact-instagram" href="${escapeHTML(instagramUrl)}" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a>` : ""}</div>
       <div class="payment-note"><span>↗</span> ${t("Оплата напрямую продавцу при личной встрече. GoMarket не принимает платежи.")}</div>` : `<p class="listing-inactive-note">${status === "sold" ? t("Этот товар уже продан.") : t("Связь скрыта, пока товар не активен.")}</p>`}
       <div class="detail-footer"><button class="favorite-action${isFavorite(item.id) ? " is-favorite" : ""}" type="button" data-favorite="${escapeHTML(item.id)}" aria-pressed="${isFavorite(item.id)}"><span aria-hidden="true">♡</span> ${t(isFavorite(item.id) ? "Удалить из избранного" : "Добавить в избранное")}</button>${owner ? `<button class="text-button" data-edit-listing="${escapeHTML(item.id)}">${t("Изменить объявление")} ✎</button><button class="text-button danger-text" data-delete-listing="${escapeHTML(item.id)}">${t("Удалить")}</button>` : `<button class="text-button report-detail" data-report="listing" data-id="${escapeHTML(item.id)}">${t("Пожаловаться")} ↗</button>`}</div>
     </div>`;
